@@ -35,12 +35,12 @@ Este proyecto es una aplicación de chat grupal basada en consola implementada e
 Para iniciar el servidor, utiliza el siguiente comando:
 
 ```bash
-python ServerManager.py -spa tu_super_contraseña -p tu_puerto -h tu_host
+python ServerManager.py -spa tu_super_contraseña -p tu_puerto --host tu_host
 ```
 
 -spa o --super_admin_password: Contraseña del super administrador (por defecto: contraseñaSuperAdmin1234)
 -p o --port: Puerto del servidor (por defecto: 9999)
--h o --host: Host del servidor (por defecto: 127.0.0.1)
+--host: Host del servidor (por defecto: 127.0.0.1)
 
 
 #### Estructura del proyecto 
