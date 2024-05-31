@@ -1,6 +1,7 @@
 import socket
 import threading
 import uuid
+import argparse  
 from User import User
 from utils.ColorEnum import Color
 from utils.HelpMessages import HelpMessages  # Importar el enum
@@ -10,16 +11,14 @@ class ServerManager:
     # Contraseña para Admin
     contraseñaAdmin = "password1234"
     
-    # Contraseña para super Admin
-    contraseñaSuperAdmin = "contraseñaSuperAdmin1234"
-
-    def __init__(self, host='127.0.0.1', port=9999):
+    def __init__(self, host, port, super_admin_password):
         self.clients = []  # Guarda pares (User, socket)
         self.grupos = ["General", "Privado"]
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
         self.server.bind((host, port))
         self.server.listen()
         self.running = True  # Bandera para controlar el estado del servidor
+        self.contraseñaSuperAdmin = super_admin_password 
 
     def broadcast(self, message, grupo, sender_socket):
         for user, client_socket in self.clients:
@@ -167,5 +166,11 @@ class ServerManager:
                 break
 
 if __name__ == "__main__":
-    server = ServerManager()
+    parser = argparse.ArgumentParser(description="Iniciar el servidor de chat")
+    parser.add_argument('-spa', '--super_admin_password', default="contraseñaSuperAdmin1234", help='Contraseña del super admin')
+    parser.add_argument('-p', '--port', type=int, default=9999, help='Puerto del servidor')
+    parser.add_argument('-h', '--host', default='127.0.0.1', help='Host del servidor')
+    args = parser.parse_args()
+
+    server = ServerManager(host=args.host, port=args.port, super_admin_password=args.super_admin_password)
     server.startServer()
