@@ -11,11 +11,11 @@ def receive_messages(client_socket):
             if message:
                 print(message)
                 if "Servidor cerrandose" in message:
-                    print("Desconectado del servidor. Cerrando aplicación...")
+                    print("Desconectado del servidor. Cerrando aplicacion...")
                     client_socket.close()
                     break
         except:
-            print("An error occurred!")
+            print("Ha ocurrido un error!")
             client_socket.close()
             break
 

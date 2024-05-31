@@ -4,7 +4,7 @@ import uuid
 import argparse  
 from User import User
 from utils.ColorEnum import Color
-from utils.HelpMessages import HelpMessages  # Importar el enum
+from utils.HelpMessages import HelpMessages 
 
 class ServerManager:
     
@@ -169,7 +169,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Iniciar el servidor de chat")
     parser.add_argument('-spa', '--super_admin_password', default="contraseñaSuperAdmin1234", help='Contraseña del super admin')
     parser.add_argument('-p', '--port', type=int, default=9999, help='Puerto del servidor')
-    parser.add_argument('-h', '--host', default='127.0.0.1', help='Host del servidor')
+    parser.add_argument('--host', default='127.0.0.1', help='Host del servidor')
     args = parser.parse_args()
 
     server = ServerManager(host=args.host, port=args.port, super_admin_password=args.super_admin_password)
